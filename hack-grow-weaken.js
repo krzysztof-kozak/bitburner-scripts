@@ -32,7 +32,7 @@ export async function main(ns) {
 
   const TARGET = 'joesguns';
   const SERVER_MAX_MONEY = getServerMaxMoney(TARGET);
-  const MINIMAL_MONEY_TRESHOLD = SERVER_MAX_MONEY * 0.8;
+  const MINIMAL_MONEY_TRESHOLD = SERVER_MAX_MONEY * 0.9;
   const DESIRED_HACK_CHANCE = 0.8;
   const MAX_SECURITY_TRESHHOLD = 20;
 
@@ -52,7 +52,7 @@ export async function main(ns) {
       await weaken(TARGET);
     }
 
-    let threadsRequired = hackAnalyzeThreads(TARGET, MINIMAL_MONEY_TRESHOLD * 0.1);
+    let threadsRequired = hackAnalyzeThreads(TARGET, MINIMAL_MONEY_TRESHOLD * 0.25);
 
     if (threadsRequired < MAX_THREADS_AVAILABLE) {
       await hack(TARGET, { threads: threadsRequired });
