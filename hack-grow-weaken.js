@@ -54,7 +54,7 @@ export async function main(ns) {
 
     let threadsRequired = hackAnalyzeThreads(TARGET, MINIMAL_MONEY_TRESHOLD * 0.25);
 
-    if (threadsRequired < MAX_THREADS_AVAILABLE) {
+    if (threadsRequired < MAX_THREADS_AVAILABLE && threadsRequired > 0) {
       await hack(TARGET, { threads: threadsRequired });
     } else {
       await hack(TARGET, { threads: MAX_THREADS_AVAILABLE });
