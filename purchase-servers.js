@@ -19,7 +19,7 @@ export async function main(ns) {
   const name = 'host';
   const quantity = 25;
   const cost = nFormat(getPurchasedServerCost(ram) * quantity, '0,00a');
-  const answer = prompt(`Purchase ${quantity} servers for ${cost}?`);
+  const answer = await ns.prompt(`Purchase ${quantity} servers for ${cost}?`);
   const serversAlreadyExist = getPurchasedServers().length > 1;
 
   if (serversAlreadyExist) {
