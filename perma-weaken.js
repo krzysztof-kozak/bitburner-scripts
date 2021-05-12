@@ -1,6 +1,6 @@
 export async function main(ns) {
   const {
-    args: [target],
+    args: [target = 'joesguns'],
     weaken,
     getHostname,
   } = ns;
