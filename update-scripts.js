@@ -1,29 +1,8 @@
 export async function main(ns) {
-  const {
-    scp,
-    getServerMaxRam,
-    getScriptRam,
-    exec,
-    getPurchasedServers,
-    killall,
-    getServerUsedRam,
-    hackAnalyzeThreads,
-    getServerMaxMoney,
-  } = ns;
+  const { scp, getServerMaxRam, getScriptRam, exec, getPurchasedServers, killall } = ns;
 
   const purchasedServers = getPurchasedServers();
-  const targets = [
-    'rothman-uni',
-    'catalyst',
-    'syscore',
-    'comptek',
-    'summit-uni',
-    'netlink',
-    'rho-construction',
-    'alpha-ent',
-    'aevum-police',
-    'lexo-corp',
-  ];
+  const targets = ['joesguns'];
   let numOfTargets = targets.length;
 
   purchasedServers.forEach((server) => {
@@ -43,8 +22,16 @@ export async function main(ns) {
       const growRamRequired = getScriptRam('/scripts/perma-grow.js');
       const weakenRamRequired = getScriptRam('/scripts/perma-weaken.js');
 
-      const weakenThreads = Math.floor((currentServerRam / weakenRamRequired) * 0.1);
-      const hackThreads = Math.floor((currentServerRam / hackRamRequired) * 0.2);
+      let weakenThreads = Math.floor((currentServerRam / weakenRamRequired) * 0.002);
+      let hackThreads = Math.floor((currentServerRam / hackRamRequired) * 0.001);
+
+      if (weakenThreads < 1) {
+        weakenThreads = Math.floor((currentServerRam / weakenRamRequired) * 0.2);
+      }
+
+      if (hackThreads < 1) {
+        hackThreads = Math.floor((currentServerRam / hackRamRequired) * 0.1);
+      }
 
       exec('/scripts/perma-weaken.js', server, weakenThreads, target);
       exec('/scripts/perma-hack.js', server, hackThreads, target);
