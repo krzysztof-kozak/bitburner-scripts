@@ -25,11 +25,11 @@ export async function main(ns) {
       let weakenThreads = Math.floor((currentServerRam / weakenRamRequired) * 0.002);
       let hackThreads = Math.floor((currentServerRam / hackRamRequired) * 0.001);
 
-      if (weakenThreads < 1) {
+      if (weakenThreads < 100) {
         weakenThreads = Math.floor((currentServerRam / weakenRamRequired) * 0.2);
       }
 
-      if (hackThreads < 1) {
+      if (hackThreads < 100) {
         hackThreads = Math.floor((currentServerRam / hackRamRequired) * 0.1);
       }
 
