@@ -13,7 +13,6 @@ export async function main(ns) {
     tprint,
     scp,
     exec,
-    promp,
   } = ns;
 
   const name = 'host';
@@ -22,7 +21,7 @@ export async function main(ns) {
   const answer = await ns.prompt(`Purchase ${quantity} servers for ${cost}?`);
   const serversAlreadyExist = getPurchasedServers().length > 1;
 
-  if (serversAlreadyExist) {
+  if (answer && serversAlreadyExist) {
     let servers = getPurchasedServers();
 
     servers.forEach((server) => {
